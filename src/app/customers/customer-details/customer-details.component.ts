@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Customer } from '../../_models/customer';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { Photo } from '../../_models/photo';
+import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-customer-details',
   standalone: true,
-  imports: [TabsModule],
+  imports: [TabsModule, GalleryModule],
   templateUrl: './customer-details.component.html',
   styleUrl: './customer-details.component.css',
 })
@@ -16,7 +17,7 @@ export class CustomerDetailsComponent implements OnInit {
   private customerService = inject(CustomersService);
   private route = inject(ActivatedRoute);
   customer?: Customer;
-  images: Photo[] = [];
+  images: GalleryItem[] = [];
 
   ngOnInit(): void {
     this.loadCustomer();
@@ -29,7 +30,9 @@ export class CustomerDetailsComponent implements OnInit {
     this.customerService.getCustomerById(id).subscribe({
       next: (result) => {
         this.customer = result;
-        this.images = this.customer.photos;
+        this.customer.photos.map((p) => {
+          this.images.push(new ImageItem({ src: p.url, thumb: p.url }));
+        });
       },
     });
   }

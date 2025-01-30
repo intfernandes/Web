@@ -1,24 +1,28 @@
-@if(customer) {
+@if (customer) {
 <div class="row">
   <div class="col-4">
     <div class="card">
       <img
         src="{{ customer.photoUrl || './assets/user.png' }}"
         alt="{{ customer.name }}"
-        class="img-card img-thumbnail"
+        class="card-img img-thumbnail"
       />
       <div class="card-body">
         <div>
           <strong>Location:</strong>
-          <p>{{ customer.country }}, {{ customer.city }}</p>
+          <p>{{ customer.city }}, {{ customer.country }}</p>
         </div>
         <div>
-          <strong>Contact:</strong>
-          <p>{{ customer.email }}</p>
+          <strong>Age:</strong>
+          <p>{{ customer.age }}</p>
         </div>
         <div>
-          <strong>Active at:</strong>
+          <strong>Last Active:</strong>
           <p>{{ customer.lastActiveAt }}</p>
+        </div>
+        <div>
+          <strong>Member since:</strong>
+          <p>{{ customer.createdAt }}</p>
         </div>
       </div>
       <div class="card-footer">
@@ -29,22 +33,16 @@
       </div>
     </div>
   </div>
-
   <div class="col-8">
     <tabset class="member-tabset">
       <tab heading="About {{ customer.name }}">
         <h4>Description</h4>
-        <p>
-          {{ customer.name }}, {{ customer.age }}, {{ customer.gender }},
-          {{ customer.status }}
-        </p>
-        <h4>Contact</h4>
-        <p>{{ customer.email }}</p>
+        <p>{{ customer.name }}</p>
       </tab>
 
       <tab heading="Photos" #photoTab="tab">
         @if (photoTab.active) {
-        <!-- <gallery [items]="images" class="gallery"></gallery> -->
+        <gallery [items]="images" class="gallery"></gallery>
         }
       </tab>
       <tab heading="Messages">
@@ -53,5 +51,4 @@
     </tabset>
   </div>
 </div>
-
 }
