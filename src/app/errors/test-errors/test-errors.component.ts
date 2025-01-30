@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { AccountService } from '../../_services/account.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-test-errors',
@@ -10,7 +11,7 @@ import { AccountService } from '../../_services/account.service';
   styleUrl: './test-errors.component.css',
 })
 export class TestErrorsComponent {
-  baseUrl = 'https://localhost:5001/api/v1/';
+  baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
   private accountService = inject(AccountService);
   validationErrors: string[] = [];

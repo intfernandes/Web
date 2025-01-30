@@ -1,0 +1,8 @@
+<div class="row">
+  @for (customer of customers; track customer.id) {
+  <div class="col-2">
+    <app-customer-card [customer]="customer"></app-customer-card>
+  </div>
+  }
+</div>
+ 

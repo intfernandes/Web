@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { MemberDetailsComponent } from './members/member-details/member-details.component';
-import { MembersListComponent } from './members/members-list/members-list.component';
+import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
+import { CustomersListComponent } from './customers/customer-list/customer-list.component';
 import { ListComponent } from './list/list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { authGuard } from './_guards/auth.guard';
@@ -16,8 +16,8 @@ export const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [authGuard],
     children: [
-      { path: 'members', component: MembersListComponent },
-      { path: 'members/:id', component: MemberDetailsComponent },
+      { path: 'customers', component: CustomersListComponent },
+      { path: 'customers/:id', component: CustomerDetailsComponent },
       { path: 'lists', component: ListComponent },
     ],
   },
