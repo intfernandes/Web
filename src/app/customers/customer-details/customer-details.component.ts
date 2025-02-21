@@ -3,7 +3,6 @@ import { CustomersService } from '../../_services/customers.service';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from '../../_models/customer';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { Photo } from '../../_models/photo';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
 
 @Component({
@@ -31,7 +30,11 @@ export class CustomerDetailsComponent implements OnInit {
       next: (result) => {
         this.customer = result;
         this.customer.photos.map((p) => {
-          this.images.push(new ImageItem({ src: p.url, thumb: p.url }));
+          if (p.imageUrl) {
+            this.images.push(
+              new ImageItem({ src: p.imageUrl, thumb: p.imageUrl })
+            );
+          }
         });
       },
     });

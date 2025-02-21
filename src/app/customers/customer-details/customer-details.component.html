@@ -3,14 +3,14 @@
   <div class="col-4">
     <div class="card">
       <img
-        src="{{ customer.photoUrl || './assets/user.png' }}"
-        alt="{{ customer.name }}"
+        src="{{ customer.photos.at(0)?.imageUrl || './assets/user.png' }}"
+        alt="{{ customer.firstName }} {{ customer.lastName }}"
         class="card-img img-thumbnail"
       />
       <div class="card-body">
         <div>
           <strong>Location:</strong>
-          <p>{{ customer.city }}, {{ customer.country }}</p>
+          <p>{{ customer.address.city }}, {{ customer.address.country }}</p>
         </div>
         <div>
           <strong>Age:</strong>
@@ -35,9 +35,9 @@
   </div>
   <div class="col-8">
     <tabset class="member-tabset">
-      <tab heading="About {{ customer.name }}">
+      <tab heading="About {{ customer.firstName }}">
         <h4>Description</h4>
-        <p>{{ customer.name }}</p>
+        <p>{{ customer.address.city }}, {{ customer.address.country }}</p>
       </tab>
 
       <tab heading="Photos" #photoTab="tab">

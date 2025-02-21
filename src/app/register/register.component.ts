@@ -1,6 +1,6 @@
 import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AccountService } from '../_services/account.service';
+import { UsersService } from '../_services/users.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  private accountService = inject(AccountService);
+  private usersService = inject(UsersService);
   usersFromHomeComponent = input.required<any>();
   toastr = inject(ToastrService);
 
@@ -20,7 +20,7 @@ export class RegisterComponent {
   model: any = {};
 
   register() {
-    this.accountService.register(this.model).subscribe({
+    this.usersService.register(this.model).subscribe({
       next: (response) => {
         console.log(response);
         this.cancel();

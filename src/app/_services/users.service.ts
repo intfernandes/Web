@@ -7,13 +7,13 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class AccountService {
+export class UsersService {
   private http = inject(HttpClient);
   baseUrl = environment.apiUrl;
   currentUser = signal<User | null>(null);
 
   login(model: any) {
-    return this.http.post<User>(this.baseUrl + 'auth/login', model).pipe(
+    return this.http.post<User>(this.baseUrl + 'auth/signin', model).pipe(
       map((user) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
@@ -24,7 +24,7 @@ export class AccountService {
   }
 
   register(model: any) {
-    return this.http.post<User>(this.baseUrl + 'auth/register', model).pipe(
+    return this.http.post<User>(this.baseUrl + 'auth/signup', model).pipe(
       map((user) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));

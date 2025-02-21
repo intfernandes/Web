@@ -1,8 +1,16 @@
 <div class="card mb4">
   <div class="card-img-wrapper">
     <img
-      src="{{ customer().photoUrl }}"
-      alt="{{ customer().name }}"
+      src="{{
+        customer() && customer().photos && customer().photos.length > 0
+          ? customer().photos[0].imageUrl
+          : './assets/user.png'
+      }}"
+      alt="{{
+        customer() && customer().firstName
+          ? customer().firstName + ' ' + (customer().lastName || '')
+          : 'User'
+      }}"
       class="card-img-top"
     />
     <ul class="list-tile member-icons animate text-center">
@@ -11,15 +19,15 @@
           routerLink="/customers/{{ customer().id }}"
           class="btn button-primary"
         >
-          <i class="fa fa-user"> </i>
+          <i class="fa fa-user"></i>
         </button>
       </li>
       <li class="list-inline-item">
-        <button class="btn button-primary"><i class="fa fa-heart"> </i></button>
+        <button class="btn button-primary"><i class="fa fa-heart"></i></button>
       </li>
       <li class="list-inline-item">
         <button class="btn button-primary">
-          <i class="fa fa-envelope"> </i>
+          <i class="fa fa-envelope"></i>
         </button>
       </li>
     </ul>
@@ -27,8 +35,14 @@
   <div class="card-body p1">
     <h6 class="card-title text-center mb-1">
       <i class="fa fa-user me-2"></i>
-      {{ customer().name }}
+      {{
+        customer().firstName
+          ? customer().firstName + " " + (customer().lastName || "")
+          : "Unknown User"
+      }}
     </h6>
-    <p class="card-text text-muted text-center">{{ customer().city }}</p>
+    <p class="card-text text-muted text-center">
+      {{ customer().address?.city ?? "Location Unknown" }}
+    </p>
   </div>
 </div>

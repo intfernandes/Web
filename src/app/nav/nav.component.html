@@ -3,7 +3,7 @@
     <a routerLink="/" class="navbar-brand">Constance</a>
 
     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-      @if (accoutService.currentUser() ) {
+      @if (usersService.currentUser() ) {
       <li class="nav-item">
         <a routerLink="/customers" routerLinkActive="active" class="nav-link"
           >Customers</a
@@ -27,18 +27,18 @@
         >
       </li>
     </ul>
-    @if (accoutService.currentUser()) {
+    @if (usersService.currentUser()) {
     <div dropdown class="dropdown">
       <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
-        Welcome {{ accoutService.currentUser()?.name | titlecase }}
+        Welcome {{ usersService.currentUser()?.firstName | titlecase }}
       </a>
       <div *dropdownMenu class="dropdown-menu">
-        <a class="dropdown-item"> Edit profile</a>
+        <a routerLink="user/edit" class="dropdown-item"> Edit profile</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()"> Logout</a>
       </div>
     </div>
-    } @if (!accoutService.currentUser()) {
+    } @if (!usersService.currentUser()) {
     <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex" role="search">
       <input
         name="email"

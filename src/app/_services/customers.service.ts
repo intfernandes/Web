@@ -11,10 +11,10 @@ export class CustomersService {
   baseUrl = environment.apiUrl;
 
   getCustomers() {
-    return this.http.get<Customer[]>(this.baseUrl + 'users');
+    return this.http.get<Customer[]>(this.baseUrl + 'customers');
   }
 
   getCustomerById(id: number) {
-    return this.http.get<Customer>(this.baseUrl + 'users/' + id);
+    return this.http.get<Customer>(this.baseUrl + 'customers/' + id);
   }
 }

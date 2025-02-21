@@ -1,13 +1,13 @@
 import { CanActivateFn } from '@angular/router';
-import { AccountService } from '../_services/account.service';
+import { UsersService } from '../_services/users.service';
 import { inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const accounts = inject(AccountService);
+  const users = inject(UsersService);
   const toastr = inject(ToastrService);
 
-  if (accounts.currentUser()) {
+  if (users.currentUser()) {
     return true;
   } else {
     toastr.error('You must be loged to access this resource');

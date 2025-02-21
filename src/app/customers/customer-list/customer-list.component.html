@@ -1,8 +1,7 @@
 <div class="row">
-  @for (customer of customers; track customer.id) {
-  <div class="col-2">
+  @for (customer of customers; track $index ) {
+  <div class="col-md-4">
     <app-customer-card [customer]="customer"></app-customer-card>
   </div>
   }
 </div>
- 

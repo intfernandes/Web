@@ -1,7 +1,6 @@
-
-  export interface Photo {
-    id: number
-    url: string
-    isMain: boolean
-  }
-  
+export interface Photo {
+  id: string | null;
+  imageUrl: string | null;
+  description: string | null;
+  highlight: boolean | null;
+}

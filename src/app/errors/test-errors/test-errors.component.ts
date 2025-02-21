@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { AccountService } from '../../_services/account.service';
+import { UsersService } from '../../_services/users.service';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment';
 export class TestErrorsComponent {
   baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
-  private accountService = inject(AccountService);
+  private usersService = inject(UsersService);
   validationErrors: string[] = [];
 
   test400() {
@@ -53,7 +53,7 @@ export class TestErrorsComponent {
   }
 
   registerError() {
-    this.accountService.register({ email: '', password: '' }).subscribe({
+    this.usersService.register({ email: '', password: '' }).subscribe({
       next: (response) => {
         console.log(response);
       },

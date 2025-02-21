@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AccountService } from '../_services/account.service';
+import { UsersService } from '../_services/users.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -20,20 +20,20 @@ import { TitleCasePipe } from '@angular/common';
   styleUrl: './nav.component.css',
 })
 export class NavComponent {
-  accoutService = inject(AccountService);
+  usersService = inject(UsersService);
   router = inject(Router);
   toastr = inject(ToastrService);
   model: any = {};
 
   login() {
-    this.accoutService.login(this.model).subscribe({
+    this.usersService.login(this.model).subscribe({
       next: (_) => this.router.navigateByUrl('/customers'),
       error: (error) => this.toastr.error(error.error),
     });
   }
 
   logout() {
-    this.accoutService.logout();
+    this.usersService.logout();
     this.router.navigateByUrl('/');
   }
 }
