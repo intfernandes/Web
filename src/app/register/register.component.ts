@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent {
   private usersService = inject(UsersService);
-  usersFromHomeComponent = input.required<any>();
   toastr = inject(ToastrService);
 
   cancelRegister = output<boolean>();
@@ -20,6 +19,7 @@ export class RegisterComponent {
   model: any = {};
 
   register() {
+    console.log(this.model);
     this.usersService.register(this.model).subscribe({
       next: (response) => {
         console.log(response);
